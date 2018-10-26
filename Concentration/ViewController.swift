@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     
     @IBOutlet private var cardButtons: [UIButton]!
     
-    private var emojiChoices = "🐶🐱🐭🐰🦊🐻🐶🐱🐭🐰🦊🐻"
+    private var emojiChoices = "🐶🐱🐭🐰🦊🐻🐼🐸🐒🦁🐷🐮🐶🐱🐭🐰🦊🐻🐼🐸🐒🦁🐷🐮"
     
     private var emoji = [Card: String]()
     

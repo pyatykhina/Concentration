@@ -19,12 +19,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="niF-a4-gx6">
-                                <rect key="frame" x="125.66666666666666" y="714" width="123.66666666666666" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" red="0.25504053180000003" green="0.25016593809999998" blue="0.35194705310000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dNg-EV-gLa">
+                                <rect key="frame" x="16" y="746" width="343" height="48"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="niF-a4-gx6">
+                                        <rect key="frame" x="0.0" y="0.0" width="167.66666666666666" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" red="0.25504053180000003" green="0.25016593809999998" blue="0.35194705310000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BF6-yO-LQy">
+                                        <rect key="frame" x="175.66666666666663" y="0.0" width="167.33333333333337" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="New game">
+                                            <color key="titleColor" red="0.20192953944206238" green="0.20153266191482544" blue="0.28236237168312073" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="newGameButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4w9-wp-mz9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GUf-Ti-k0z">
                                 <rect key="frame" x="16" y="60" width="343" height="256"/>
                                 <subviews>
@@ -266,9 +281,10 @@
                         <color key="backgroundColor" red="0.75576727635839136" green="0.81721334648548216" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="GUf-Ti-k0z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="2hj-DF-ZOW"/>
+                            <constraint firstItem="dNg-EV-gLa" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="16" id="6w7-Yg-nTC"/>
                             <constraint firstItem="GUf-Ti-k0z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="AJt-Ld-peQ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="niF-a4-gx6" secondAttribute="bottom" constant="16" id="FuD-5E-UZk"/>
-                            <constraint firstItem="niF-a4-gx6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="SHY-CL-7Lg"/>
+                            <constraint firstItem="dNg-EV-gLa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="aUE-0G-LVE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dNg-EV-gLa" secondAttribute="trailing" constant="16" id="hmB-aT-hyB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GUf-Ti-k0z" secondAttribute="trailing" constant="16" id="pcu-bl-S5q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

@@ -54,5 +54,21 @@ struct Concentration {
             let card = Card()
             cards += [card,card]
         }
+        cards.shuffle()
+    }
+}
+
+extension MutableCollection {
+    mutating func shuffle(){
+        if count > 1 {
+            // dropLast() - подпоследовательность, содержащая все элементы последовательности, кроме последнего
+            for i in indices.dropLast() {
+                let diff = distance(from: i, to: endIndex)
+                let j = index(i, offsetBy: diff.arc4random)
+                swapAt(i, j)
+            }
+        } else {
+            return
+        }
     }
 }

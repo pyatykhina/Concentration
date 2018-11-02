@@ -18,9 +18,14 @@ class ViewController: UIViewController {
     
     @IBOutlet private var cardButtons: [UIButton]!
     
-    private var emojiChoices = "🐶🐱🐭🐰🦊🐻🐼🐸🐒🦁🐷🐮"
+    private var emojiChoices = "🐶🐱🐭🐰🦊🐻🐼🐸🐒🦁🐷🐮🐥🐬🐙🐘🐇🐓🐎🐟🦀🐝🦇🐨"
+    private var currentEmojies = ""
     
     private var emoji = [Card: String]()
+    
+    override func viewDidLoad() {
+        currentEmojies = emojiChoices
+    }
     
     func updateFlipCountLabel() {
         let attributes: [NSAttributedStringKey: Any] = [
@@ -45,6 +50,7 @@ class ViewController: UIViewController {
     
     @IBAction func newGameButton(_ sender: UIButton) {
         flipCount = 0
+        currentEmojies = emojiChoices
         game = newConcentration()
         updateViewFromModel()
     }
@@ -79,9 +85,9 @@ class ViewController: UIViewController {
     }
 
     private func emoji(for card: Card) -> String {
-        if emoji[card] == nil, emojiChoices.count > 0 {
-            let randomStringIndex = emojiChoices.index(emojiChoices.startIndex, offsetBy: emojiChoices.count.arc4random)
-                emoji[card] = String(emojiChoices.remove(at: randomStringIndex))
+        if emoji[card] == nil, currentEmojies.count > 0 {
+            let randomStringIndex = currentEmojies.index(currentEmojies.startIndex, offsetBy: currentEmojies.count.arc4random)
+                emoji[card] = String(currentEmojies.remove(at: randomStringIndex))
             }
         return emoji[card] ?? "?"
     }

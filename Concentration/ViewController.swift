@@ -18,13 +18,36 @@ class ViewController: UIViewController {
     
     @IBOutlet private var cardButtons: [UIButton]!
     
-    private var emojiChoices = "🐶🐱🐭🐰🦊🐻🐼🐸🐒🦁🐷🐮🐥🐬🐙🐘🐇🐓🐎🐟🦀🐝🦇🐨"
-    private var currentEmojies = ""
+    private var Themes: [String: [String]] = [
+        "Animals": ["🐶","🐱","🐭","🐰","🦊","🐻","🐼","🐸","🐒","🦁","🐷","🐮","🐥","🐬","🐙","🐘","🐇","🐓","🐎","🐟","🦀","🐝","🦇","🐨"],
+        "Fruits": ["🍏","🍐","🍊","🍋","🍌","🍉","🍇","🍓","🍈","🍒","🍑","🍍","🥥","🥝"],
+        "FastFood": ["🍔","🍟","🥫","🍕","🌮","🌯","🍱","🍿","🌭","🥐","🥠","🍝","🍤"],
+        "Faces": ["😃","😅","😂","😘","😍","😇","😎","😜","😡","😭","😱","😵","😈","🤓","😊","😴"],
+        "Sport": ["⚽️","🏀","🏈","⚾️","🎾","🏐","🏉","🎱","🏓","🏸","🥊","⛸","🥌","🏑","🥅"],
+        "Travel": ["⛱","🏝","🌋","🚦","🗺","🏕","🏖","🛶","🗽","🗼","🏰","🚏","🗿","🏟","🛤"],
+        "Transport": ["🚗","🚕","🚌","🚎","🚓","🏎","🚒","🚑","🚐","🚛","🏍","🚃","✈️","🚤","🚊","⛵️"],
+        "Numbers": ["0️⃣","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣","🔟","#️⃣","*️⃣"],
+        "Flags": ["🇦🇺","🇦🇿","🇬🇧","🏴󠁧󠁢󠁥󠁮󠁧󠁿","🇧🇷","🇧🇪","🇦🇲","🇧🇶","🇧🇾","🇧🇬","🇪🇬","🇮🇱","🇮🇨","🇱🇺","🇷🇺","🇩🇰","🇬🇹"]
+    ]
+    
+    private var currentEmojies = [String] ()
+    
+    private var themeIndex = 0 {
+        didSet {
+            currentEmojies = Themes[themeKeys[themeIndex]] ?? []
+            emoji = [Card: String]()
+        }
+    }
+    
+    private var themeKeys: [String] {
+        return Array(Themes.keys)
+    }
     
     private var emoji = [Card: String]()
     
     override func viewDidLoad() {
-        currentEmojies = emojiChoices
+        themeIndex = themeKeys.count.arc4random
+        updateViewFromModel()
     }
     
     func updateFlipCountLabel() {
@@ -50,7 +73,7 @@ class ViewController: UIViewController {
     
     @IBAction func newGameButton(_ sender: UIButton) {
         flipCount = 0
-        currentEmojies = emojiChoices
+        themeIndex = themeKeys.count.arc4random
         game = newConcentration()
         updateViewFromModel()
     }

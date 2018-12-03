@@ -5,10 +5,11 @@
 //  Created by Татьяна Пятыхина on 12.09.2018.
 //  Copyright © 2018 Татьяна Пятыхина. All rights reserved.
 //
-
 import UIKit
 
 class ViewController: UIViewController {
+    
+    private(set) var flipCount = 0
     
     private lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     
@@ -50,24 +51,15 @@ class ViewController: UIViewController {
         updateViewFromModel()
     }
     
-    func updateFlipCountLabel() {
-        let attributes: [NSAttributedStringKey: Any] = [
-            .strokeWidth: 5.0,
-            .strokeColor: UIColor.darkGray
-        ]
-        let attributedString = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
-        flipCountLabel.attributedText = attributedString
-    }
-    
-    private(set) var flipCount = 0 {
+    @IBOutlet private weak var flipCountLabel: UILabel! {
         didSet {
-            updateFlipCountLabel()
+            flipCountLabel.text = "Flips: \(flipCount)"
         }
     }
     
-    @IBOutlet private weak var flipCountLabel: UILabel! {
+    @IBOutlet weak var scoreLabel: UILabel! {
         didSet {
-            updateFlipCountLabel()
+            scoreLabel.text = "Score: \(game.score)"
         }
     }
     
@@ -105,13 +97,15 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ? UIColor.clear :#colorLiteral(red: 0.7042355537, green: 0.4285730422, blue: 0.3668116331, alpha: 1)
             }
         }
+        scoreLabel.text = "Score: \(game.score)"
+        flipCountLabel.text = "Flips: \(flipCount)"
     }
-
+    
     private func emoji(for card: Card) -> String {
         if emoji[card] == nil, currentEmojies.count > 0 {
             let randomStringIndex = currentEmojies.index(currentEmojies.startIndex, offsetBy: currentEmojies.count.arc4random)
-                emoji[card] = String(currentEmojies.remove(at: randomStringIndex))
-            }
+            emoji[card] = String(currentEmojies.remove(at: randomStringIndex))
+        }
         return emoji[card] ?? "?"
     }
 }

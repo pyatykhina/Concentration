@@ -5,10 +5,16 @@
 //  Created by Татьяна Пятыхина on 21.09.2018.
 //  Copyright © 2018 Татьяна Пятыхина. All rights reserved.
 //
-
 import Foundation
 
+private struct Score {
+    static let cardsIsMatched = 2
+    static let cardsIsNotMatched = -1
+}
+
 struct Concentration {
+    
+    private(set) var score = 0
     
     private(set) var cards = [Card]()
     
@@ -30,6 +36,10 @@ struct Concentration {
                 if cards[matchIndex] == cards[index] {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+                    
+                    score += Score.cardsIsMatched
+                } else if score > 0 {
+                    score += Score.cardsIsNotMatched
                 }
                 cards[index].isFaceUp = true
             } else {
@@ -48,7 +58,7 @@ struct Concentration {
     }
 }
 
-extension MutableCollection {
+extension Array {
     mutating func shuffle(){
         if count > 1 {
             // dropLast() - подпоследовательность, содержащая все элементы последовательности, кроме последнего
